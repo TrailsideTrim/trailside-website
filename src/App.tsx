@@ -1,6 +1,9 @@
+import { useState } from "react";
 import QuoteForm from "./components/QuoteForm";
 
 export default function TrailsideLandingPage() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <div id="top" className="bg-white text-zinc-900 scroll-smooth">
       {/* HEADER WRAPPER */}
@@ -9,14 +12,22 @@ export default function TrailsideLandingPage() {
           <div className="absolute inset-0 bg-[url('/textures/dark-wood.jpg')] bg-cover bg-center opacity-22" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/35" />
         </div>
-      
+
         {/* NAVBAR */}
         <header className="border-b border-zinc-200/60 bg-white shadow-[0_2px_6px_rgba(0,0,0,0.06)]">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="relative min-h-[88px] md:min-h-[96px]">
-      
               {/* Mobile layout */}
               <div className="flex min-h-[88px] items-center justify-center md:hidden">
+                <button
+                  type="button"
+                  onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                  className="absolute left-0 flex h-11 w-11 items-center justify-center rounded-md border border-zinc-200 bg-white text-zinc-800 shadow-sm"
+                  aria-label="Open menu"
+                >
+                  <span className="text-2xl leading-none">☰</span>
+                </button>
+
                 <a href="#top" className="block">
                   <img
                     src="/logo.png"
@@ -25,7 +36,7 @@ export default function TrailsideLandingPage() {
                   />
                 </a>
               </div>
-      
+
               {/* Desktop layout */}
               <div className="hidden min-h-[96px] items-center justify-between md:flex">
                 <nav className="flex items-center gap-7 text-[16px] font-medium tracking-[0.01em] text-zinc-700 lg:gap-8">
@@ -33,10 +44,10 @@ export default function TrailsideLandingPage() {
                   <a href="#services" className="transition hover:text-black">Services</a>
                   <a href="#gallery" className="transition hover:text-black">Gallery</a>
                 </nav>
-      
+
                 <div className="md:w-[230px] lg:w-[260px]" />
               </div>
-      
+
               {/* Center floating logo - desktop only */}
               <a
                 href="#top"
@@ -48,14 +59,14 @@ export default function TrailsideLandingPage() {
                   className="h-[132px] w-auto object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.18)] lg:h-[150px]"
                 />
               </a>
-      
+
               {/* Right nav + CTA - desktop only */}
               <div className="absolute inset-y-0 right-0 hidden items-center justify-end gap-5 md:flex lg:gap-6">
                 <nav className="flex items-center gap-7 text-[16px] font-medium tracking-[0.01em] text-zinc-700 lg:gap-8">
                   <a href="#about" className="transition hover:text-black">About</a>
                   <a href="#request-quote" className="transition hover:text-black">Request a Quote</a>
                 </nav>
-      
+
                 <a
                   href="tel:4802553655"
                   className="rounded-lg bg-orange-600 px-5 py-2.5 text-[15px] font-semibold tracking-[0.01em] text-white shadow-sm transition hover:bg-orange-700"
@@ -66,6 +77,36 @@ export default function TrailsideLandingPage() {
             </div>
           </div>
         </header>
+
+        {/* Mobile dropdown menu */}
+        {mobileMenuOpen && (
+          <div className="border-b border-zinc-200 bg-white px-4 py-4 shadow-sm md:hidden">
+            <nav className="mx-auto flex max-w-7xl flex-col gap-3 text-[16px] font-medium text-zinc-700">
+              <a onClick={() => setMobileMenuOpen(false)} href="#top" className="rounded-md px-3 py-2 hover:bg-zinc-100">
+                Home
+              </a>
+              <a onClick={() => setMobileMenuOpen(false)} href="#services" className="rounded-md px-3 py-2 hover:bg-zinc-100">
+                Services
+              </a>
+              <a onClick={() => setMobileMenuOpen(false)} href="#gallery" className="rounded-md px-3 py-2 hover:bg-zinc-100">
+                Gallery
+              </a>
+              <a onClick={() => setMobileMenuOpen(false)} href="#about" className="rounded-md px-3 py-2 hover:bg-zinc-100">
+                About
+              </a>
+              <a onClick={() => setMobileMenuOpen(false)} href="#request-quote" className="rounded-md px-3 py-2 hover:bg-zinc-100">
+                Request a Quote
+              </a>
+              <a
+                onClick={() => setMobileMenuOpen(false)}
+                href="tel:4802553655"
+                className="mt-2 rounded-md bg-orange-600 px-4 py-3 text-center font-semibold text-white shadow-sm"
+              >
+                Call Now
+              </a>
+            </nav>
+          </div>
+        )}
       </div>
 
       {/* HERO */}
@@ -89,7 +130,7 @@ export default function TrailsideLandingPage() {
                 Right
               </h1>
 
-              <p className="mt-5 text-base sm:text-lg text-white/90 leading-relaxed">
+              <p className="mt-5 text-base leading-relaxed text-white/90 sm:text-lg">
                 Professional cabinets, baseboards, doors, and finish trim serving
                 San Tan Valley and the East Valley.
               </p>
@@ -127,16 +168,16 @@ export default function TrailsideLandingPage() {
             Finish Carpentry Services
           </h2>
 
-          <p className="mt-4 max-w-2xl mx-auto text-gray-600">
+          <p className="mx-auto mt-4 max-w-2xl text-gray-600">
             Detail-focused trim work for homeowners and builders who want clean lines,
             tight joints, and a finished look that feels right.
           </p>
 
           <div className="mt-14 grid gap-8 md:grid-cols-3">
             <div className="rounded-xl bg-white p-8 shadow-sm transition hover:shadow-md">
-              <div className="mb-4 h-1 w-10 bg-orange-500 mx-auto" />
-              <h3 className="text-lg font-semibold mb-4">Baseboards & Trim</h3>
-              <ul className="text-sm text-gray-600 space-y-2 text-left">
+              <div className="mx-auto mb-4 h-1 w-10 bg-orange-500" />
+              <h3 className="mb-4 text-lg font-semibold">Baseboards & Trim</h3>
+              <ul className="space-y-2 text-left text-sm text-gray-600">
                 <li>• Clean, tight miter joints</li>
                 <li>• Level and consistent reveals</li>
                 <li>• Seamless transitions room to room</li>
@@ -144,9 +185,9 @@ export default function TrailsideLandingPage() {
             </div>
 
             <div className="rounded-xl bg-white p-8 shadow-sm transition hover:shadow-md">
-              <div className="mb-4 h-1 w-10 bg-orange-500 mx-auto" />
-              <h3 className="text-lg font-semibold mb-4">Doors & Interior Trim</h3>
-              <ul className="text-sm text-gray-600 space-y-2 text-left">
+              <div className="mx-auto mb-4 h-1 w-10 bg-orange-500" />
+              <h3 className="mb-4 text-lg font-semibold">Doors & Interior Trim</h3>
+              <ul className="space-y-2 text-left text-sm text-gray-600">
                 <li>• Interior door installation</li>
                 <li>• Casing and jamb adjustments</li>
                 <li>• Precise, consistent fit and finish</li>
@@ -154,9 +195,9 @@ export default function TrailsideLandingPage() {
             </div>
 
             <div className="rounded-xl bg-white p-8 shadow-sm transition hover:shadow-md">
-              <div className="mb-4 h-1 w-10 bg-orange-500 mx-auto" />
-              <h3 className="text-lg font-semibold mb-4">Cabinets & Finish Work</h3>
-              <ul className="text-sm text-gray-600 space-y-2 text-left">
+              <div className="mx-auto mb-4 h-1 w-10 bg-orange-500" />
+              <h3 className="mb-4 text-lg font-semibold">Cabinets & Finish Work</h3>
+              <ul className="space-y-2 text-left text-sm text-gray-600">
                 <li>• Cabinet install and alignment</li>
                 <li>• Crown, toe kick, and fillers</li>
                 <li>• Clean final detailing that ties it together</li>
@@ -175,7 +216,7 @@ export default function TrailsideLandingPage() {
         <div className="mx-auto max-w-5xl px-6">
           <div className="text-center">
             <h2 className="text-3xl font-bold sm:text-4xl">Gallery of Our Work</h2>
-            <p className="mt-4 mx-auto max-w-2xl text-gray-600">
+            <p className="mx-auto mt-4 max-w-2xl text-gray-600">
               A look at the clean, detailed finish work we bring to every project.
             </p>
           </div>
@@ -194,7 +235,7 @@ export default function TrailsideLandingPage() {
                 <img
                   src="/gallery2.jpeg"
                   alt="Custom panel trim detail"
-                  className="h-[200px] w-full object-cover rounded-xl shadow-sm transition duration-300 hover:scale-[1.02] md:h-[250px]"
+                  className="h-[200px] w-full rounded-xl object-cover shadow-sm transition duration-300 hover:scale-[1.02] md:h-[250px]"
                 />
               </div>
 
@@ -202,7 +243,7 @@ export default function TrailsideLandingPage() {
                 <img
                   src="/gallery3.jpeg"
                   alt="Baseboard detail and finish trim"
-                  className="h-[200px] w-full object-cover rounded-xl shadow-sm transition duration-300 hover:scale-[1.02] md:h-[250px]"
+                  className="h-[200px] w-full rounded-xl object-cover shadow-sm transition duration-300 hover:scale-[1.02] md:h-[250px]"
                 />
               </div>
             </div>
@@ -215,7 +256,7 @@ export default function TrailsideLandingPage() {
       </section>
 
       {/* ABOUT */}
-      <section id="about" className="bg-zinc-100 py-20 px-6 text-center">
+      <section id="about" className="bg-zinc-100 px-6 py-20 text-center">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-4xl font-black">About Trailside</h2>
           <p className="mt-6 text-zinc-600">
