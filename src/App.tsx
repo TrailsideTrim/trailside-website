@@ -16,9 +16,9 @@ export default function TrailsideLandingPage() {
         {/* NAVBAR */}
         <header className="border-b border-zinc-200/60 bg-white shadow-[0_2px_6px_rgba(0,0,0,0.06)]">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="relative min-h-[88px] md:min-h-[96px]">
+            <div className="relative min-h-[72px] md:min-h-[96px] overflow-visible">
               {/* Mobile layout */}
-              <div className="flex min-h-[88px] items-center justify-center md:hidden">
+              <div className="relative flex min-h-[72px] items-center justify-center md:hidden">
                 <button
                   type="button"
                   onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -32,7 +32,7 @@ export default function TrailsideLandingPage() {
                   <img
                     src="/logo.png"
                     alt="Trailside Trim & Carpentry logo"
-                    className="h-[104px] w-auto object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.16)]"
+                    className="relative top-3 h-[96px] w-auto object-contain drop-shadow-[0_10px_18px_rgba(0,0,0,0.18)]"
                   />
                 </a>
               </div>
