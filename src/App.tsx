@@ -5,44 +5,57 @@ export default function TrailsideLandingPage() {
     <div id="top" className="bg-white text-zinc-900 scroll-smooth">
       {/* HEADER WRAPPER */}
       <div className="relative z-50">
-        <div className="relative h-6 overflow-hidden border-b border-black/10 bg-neutral-900">
+        <div className="relative h-5 overflow-hidden border-b border-black/10 bg-neutral-900 md:h-6">
           <div className="absolute inset-0 bg-[url('/textures/dark-wood.jpg')] bg-cover bg-center opacity-22" />
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/10 to-black/35" />
         </div>
-
+      
         {/* NAVBAR */}
         <header className="border-b border-zinc-200/60 bg-white shadow-[0_2px_6px_rgba(0,0,0,0.06)]">
-          <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
-            <div className="relative min-h-[96px] overflow-visible">
-              <div className="flex min-h-[96px] items-center justify-between">
-                <nav className="hidden items-center gap-7 text-[16px] font-medium tracking-[0.01em] text-zinc-700 md:flex lg:gap-8">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="relative min-h-[88px] md:min-h-[96px]">
+      
+              {/* Mobile layout */}
+              <div className="flex min-h-[88px] items-center justify-center md:hidden">
+                <a href="#top" className="block">
+                  <img
+                    src="/logo.png"
+                    alt="Trailside Trim & Carpentry logo"
+                    className="h-[104px] w-auto object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.16)]"
+                  />
+                </a>
+              </div>
+      
+              {/* Desktop layout */}
+              <div className="hidden min-h-[96px] items-center justify-between md:flex">
+                <nav className="flex items-center gap-7 text-[16px] font-medium tracking-[0.01em] text-zinc-700 lg:gap-8">
                   <a href="#top" className="transition hover:text-black">Home</a>
                   <a href="#services" className="transition hover:text-black">Services</a>
                   <a href="#gallery" className="transition hover:text-black">Gallery</a>
                 </nav>
-
-                <div className="hidden md:block md:w-[230px] lg:w-[260px]" />
+      
+                <div className="md:w-[230px] lg:w-[260px]" />
               </div>
-
-              {/* Center floating logo */}
+      
+              {/* Center floating logo - desktop only */}
               <a
                 href="#top"
-                className="absolute left-1/2 top-0 z-20 -translate-x-1/2 -translate-y-[15%]"
+                className="absolute left-1/2 top-0 z-20 hidden -translate-x-1/2 -translate-y-[15%] md:block"
               >
                 <img
                   src="/logo.png"
                   alt="Trailside Trim & Carpentry logo"
-                  className="h-[120px] w-auto object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.18)] sm:h-[132px] lg:h-[150px]"
+                  className="h-[132px] w-auto object-contain drop-shadow-[0_10px_20px_rgba(0,0,0,0.18)] lg:h-[150px]"
                 />
               </a>
-
-              {/* Right nav + CTA */}
-              <div className="absolute inset-y-0 right-0 flex items-center justify-end gap-5 lg:gap-6">
-                <nav className="hidden items-center gap-7 text-[16px] font-medium tracking-[0.01em] text-zinc-700 md:flex lg:gap-8">
+      
+              {/* Right nav + CTA - desktop only */}
+              <div className="absolute inset-y-0 right-0 hidden items-center justify-end gap-5 md:flex lg:gap-6">
+                <nav className="flex items-center gap-7 text-[16px] font-medium tracking-[0.01em] text-zinc-700 lg:gap-8">
                   <a href="#about" className="transition hover:text-black">About</a>
                   <a href="#request-quote" className="transition hover:text-black">Request a Quote</a>
                 </nav>
-
+      
                 <a
                   href="tel:4802553655"
                   className="rounded-lg bg-orange-600 px-5 py-2.5 text-[15px] font-semibold tracking-[0.01em] text-white shadow-sm transition hover:bg-orange-700"
