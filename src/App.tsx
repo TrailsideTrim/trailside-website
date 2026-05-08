@@ -70,11 +70,11 @@ export default function TrailsideLandingPage() {
 
       {/* HERO */}
       <section className="relative overflow-hidden bg-[#f3f3f1]">
-        <div className="relative h-[560px] w-full md:h-[620px]">
+        <div className="relative h-[520px] w-full md:h-[620px]">
           <img
             src="/hero.jpg"
             alt="Interior trim carpentry"
-            className="absolute inset-0 h-full w-full object-cover object-[center_75%] scale-105"
+            className="absolute inset-0 h-full w-full object-cover object-[center_65%] md:object-[center_75%] md:scale-105"
           />
 
           <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/20 to-transparent md:from-black/60 md:via-black/25 md:to-transparent" />
