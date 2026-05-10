@@ -44,7 +44,7 @@ export default function QuoteForm() {
       <div className="mx-auto max-w-4xl px-4 py-16">
         <div className="rounded-2xl bg-white p-6 md:p-8 border border-zinc-200/70">
           <div className="mb-8">
-            <p className="text-sm font-semibold uppercase tracking-wide text-orange-600">
+            <p className="text-sm font-semibold uppercase tracking-wide text-brand-600">
               Request a Quote
             </p>
             <h2 className="mt-2 text-2xl font-bold md:text-3xl">
@@ -60,7 +60,7 @@ export default function QuoteForm() {
 
           {submitted ? (
             <div className="rounded-xl border border-green-200 bg-green-50 p-5 text-green-800">
-              Thank you — your request has been received. We’ll follow up shortly.
+              Thank you — your request has been received. We'll follow up shortly.
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="grid gap-5">
@@ -69,7 +69,7 @@ export default function QuoteForm() {
                   name="name"
                   required
                   placeholder="Name"
-                  className="rounded-lg border border-zinc-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 transition"
+                  className="rounded-lg border border-zinc-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition"
                 />
 
                 <input
@@ -77,28 +77,28 @@ export default function QuoteForm() {
                   required
                   type="tel"
                   placeholder="Phone"
-                  className="rounded-lg border border-zinc-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 transition"
+                  className="rounded-lg border border-zinc-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition"
                 />
 
                 <input
                   name="email"
                   type="email"
                   placeholder="Email"
-                  className="rounded-lg border border-zinc-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 transition"
+                  className="rounded-lg border border-zinc-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition"
                 />
 
                 <input
                   name="cityZip"
                   required
                   placeholder="City / ZIP"
-                  className="rounded-lg border border-zinc-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 transition"
+                  className="rounded-lg border border-zinc-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition"
                 />
               </div>
 
               <select
                 name="workType"
                 required
-                className="rounded-lg border border-zinc-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 transition"
+                className="rounded-lg border border-zinc-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition"
                 defaultValue=""
               >
                 <option value="" disabled>
@@ -116,7 +116,8 @@ export default function QuoteForm() {
                 required
                 rows={5}
                 placeholder="Briefly describe the project..."
-                className="rounded-lg border border-zinc-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/30 focus:border-orange-500 transition" />
+                className="rounded-lg border border-zinc-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition"
+              />
 
               <div className="rounded-lg border border-zinc-200 p-4 bg-zinc-50/50">
                 <p className="mb-3 text-sm font-medium">
@@ -139,24 +140,27 @@ export default function QuoteForm() {
               <div className="rounded-lg border border-zinc-200 bg-zinc-50/50 p-4 text-sm text-zinc-700">
                 <p className="font-medium text-zinc-900">Project photos</p>
                 <p className="mt-1 text-xs text-zinc-500">
-                  Optional: After submitting, you can email project photos to{" "}
+                  After submitting, you can email project photos to{" "}
                   <a
-                    href="emailto: trailsidetrim@gmail.com"
-                    className="font-semibold text-orange-600 hover:underline"
+                    href="mailto:trailsidetrim@gmail.com"
+                    className="font-semibold text-brand-600 hover:underline"
                   >
                     TrailsideTrim@gmail.com
+                  </a>
+                  , or text them to{" "}
+                  <a
+                    href="sms:4802553655"
+                    className="font-semibold text-brand-600 hover:underline"
+                  >
+                    (480) 255-3655
                   </a>
                   .
                 </p>
               </div>
 
-              <p className="text-xs text-zinc-500 mt-1">
-                Optional: Upload 1 photo, or text project photos after submitting.
-              </p>
-
               <button
                 type="submit"
-                className="mt-2 rounded-lg bg-orange-600 px-6 py-3 text-sm font-semibold text-white hover:bg-orange-700"
+                className="mt-2 rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700 transition"
               >
                 Request a Quote
               </button>

@@ -5,7 +5,7 @@ export default function TrailsideLandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <div id="top" className="bg-white text-zinc-900 scroll-smooth">
+    <div id="top" className="bg-white text-zinc-900 scroll-smooth font-sans">
       {/* HEADER WRAPPER */}
       <div className="relative z-50">
         <div className="relative h-5 overflow-hidden border-b border-black/10 bg-neutral-900 md:h-6">
@@ -69,7 +69,7 @@ export default function TrailsideLandingPage() {
 
                 <a
                   href="tel:4802553655"
-                  className="rounded-lg bg-orange-600 px-5 py-2.5 text-[15px] font-semibold tracking-[0.01em] text-white shadow-sm transition hover:bg-orange-700"
+                  className="rounded-lg bg-brand-600 px-5 py-2.5 text-[15px] font-semibold tracking-[0.01em] text-white shadow-sm transition hover:bg-brand-700"
                 >
                   (480) 255-3655
                 </a>
@@ -100,7 +100,7 @@ export default function TrailsideLandingPage() {
               <a
                 onClick={() => setMobileMenuOpen(false)}
                 href="tel:4802553655"
-                className="mt-2 rounded-md bg-orange-600 px-4 py-3 text-center font-semibold text-white shadow-sm"
+                className="mt-2 rounded-md bg-brand-600 px-4 py-3 text-center font-semibold text-white shadow-sm"
               >
                 Call Now
               </a>
@@ -138,7 +138,7 @@ export default function TrailsideLandingPage() {
               <div className="mt-8 flex flex-wrap gap-4">
                 <a
                   href="#request-quote"
-                  className="rounded-md bg-orange-500 px-6 py-3 font-semibold text-white shadow-md transition hover:bg-orange-600"
+                  className="rounded-md bg-brand-600 px-6 py-3 font-semibold text-white shadow-md transition hover:bg-brand-700"
                 >
                   Request a Quote
                 </a>
@@ -175,7 +175,7 @@ export default function TrailsideLandingPage() {
 
           <div className="mt-14 grid gap-8 md:grid-cols-3">
             <div className="rounded-xl bg-white p-8 shadow-sm transition hover:shadow-md">
-              <div className="mx-auto mb-4 h-1 w-10 bg-orange-500" />
+              <div className="mx-auto mb-4 h-1 w-10 bg-brand-600" />
               <h3 className="mb-4 text-lg font-semibold">Baseboards & Trim</h3>
               <ul className="space-y-2 text-left text-sm text-gray-600">
                 <li>• Clean, tight miter joints</li>
@@ -185,7 +185,7 @@ export default function TrailsideLandingPage() {
             </div>
 
             <div className="rounded-xl bg-white p-8 shadow-sm transition hover:shadow-md">
-              <div className="mx-auto mb-4 h-1 w-10 bg-orange-500" />
+              <div className="mx-auto mb-4 h-1 w-10 bg-brand-600" />
               <h3 className="mb-4 text-lg font-semibold">Doors & Interior Trim</h3>
               <ul className="space-y-2 text-left text-sm text-gray-600">
                 <li>• Interior door installation</li>
@@ -195,7 +195,7 @@ export default function TrailsideLandingPage() {
             </div>
 
             <div className="rounded-xl bg-white p-8 shadow-sm transition hover:shadow-md">
-              <div className="mx-auto mb-4 h-1 w-10 bg-orange-500" />
+              <div className="mx-auto mb-4 h-1 w-10 bg-brand-600" />
               <h3 className="mb-4 text-lg font-semibold">Cabinets & Finish Work</h3>
               <ul className="space-y-2 text-left text-sm text-gray-600">
                 <li>• Cabinet install and alignment</li>
@@ -284,7 +284,7 @@ export default function TrailsideLandingPage() {
         <div className="mt-4">
           <a
             href="#request-quote"
-            className="font-semibold text-orange-600 hover:underline"
+            className="font-semibold text-brand-600 hover:underline"
           >
             Request a Quote
           </a>
