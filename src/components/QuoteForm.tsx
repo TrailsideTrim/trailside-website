@@ -12,15 +12,17 @@ const workTypes = [
 
 export default function QuoteForm() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setLoading(true);
 
     const formData = new FormData(e.currentTarget);
 
     formData.append("access_key", "c856f751-da45-46ed-b2d9-6e6484a89c1a");
     formData.append("subject", "New Trailside Website Quote Request");
-    formData.append("from_name", "Trailside Website");
+    formData.append("from_name", "Trailside Trim & Carpentry");
     formData.append("replyto", formData.get("email") as string || "");
 
     const res = await fetch("https://api.web3forms.com/submit", {
@@ -29,6 +31,7 @@ export default function QuoteForm() {
     });
 
     const result = await res.json();
+    setLoading(false);
 
     if (result.success) {
       setSubmitted(true);
@@ -40,7 +43,7 @@ export default function QuoteForm() {
   }
 
   return (
-    <section id="request-quote" className="scroll-mt-28">
+    <section id="request-quote" className="scroll-mt-28 bg-[#f3f3f1]">
       <div className="mx-auto max-w-4xl px-4 py-16">
         <div className="rounded-2xl bg-white p-6 md:p-8 border border-zinc-200/70">
           <div className="mb-8">
@@ -59,11 +62,22 @@ export default function QuoteForm() {
           </div>
 
           {submitted ? (
-            <div className="rounded-xl border border-green-200 bg-green-50 p-5 text-green-800">
-              Thank you — your request has been received. We'll follow up shortly.
+            <div className="rounded-xl border border-green-200 bg-green-50 p-6 text-green-800">
+              <p className="font-semibold">Thank you — your request has been received.</p>
+              <p className="mt-1 text-sm">
+                We'll follow up shortly. If you provided an email, check your inbox for a confirmation.
+                You can also reach Jake directly at{" "}
+                <a href="tel:4802553655" className="font-semibold underline">
+                  (480) 255-3655
+                </a>.
+              </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="grid gap-5">
+
+              {/* Autoresponder — sends confirmation email to the submitter (requires Web3Forms Pro) */}
+              <input type="hidden" name="autorespond" value="true" />
+
               <div className="grid gap-4 md:grid-cols-2">
                 <input
                   name="name"
@@ -83,7 +97,7 @@ export default function QuoteForm() {
                 <input
                   name="email"
                   type="email"
-                  placeholder="Email"
+                  placeholder="Email (recommended)"
                   className="rounded-lg border border-zinc-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition"
                 />
 
@@ -160,9 +174,10 @@ export default function QuoteForm() {
 
               <button
                 type="submit"
-                className="mt-2 rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700 transition"
+                disabled={loading}
+                className="mt-2 rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white hover:bg-brand-700 transition disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Request a Quote
+                {loading ? "Sending..." : "Request a Quote"}
               </button>
 
             </form>
