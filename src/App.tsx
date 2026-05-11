@@ -54,24 +54,25 @@ export default function TrailsideLandingPage() {
       <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden">
         <a
           href="tel:4802553655"
-          className="flex items-center justify-center gap-2 bg-brand-600 py-4 text-base font-bold text-white shadow-[0_-2px_12px_rgba(0,0,0,0.15)] active:bg-brand-700"
+          className="flex items-center justify-center gap-2 bg-brand-600 py-3.5 text-[15px] font-bold text-white shadow-[0_-2px_12px_rgba(0,0,0,0.15)] active:bg-brand-700"
         >
-          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 8V5z" />
           </svg>
-          Call Now — (480) 255-3655
+          (480) 255-3655 — Tap to Call
         </a>
       </div>
 
       {/* HEADER WRAPPER */}
       <div className="relative z-50">
-        <div className="h-4 bg-zinc-900 md:h-10" />
+        {/* Dark strip — mobile gets enough height for logo badge spill */}
+        <div className="h-8 bg-zinc-900 md:h-10" />
 
         {/* NAVBAR */}
         <header className="border-b border-zinc-300/80 bg-[#FAF9F7] shadow-[0_2px_8px_rgba(0,0,0,0.08)]">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="relative min-h-[52px] md:min-h-[68px] overflow-visible">
-              {/* Mobile layout */}
+              {/* Mobile layout — logo centered on navbar midpoint, spills into dark strip above and hero below */}
               <div className="relative flex min-h-[52px] items-center justify-center md:hidden">
                 <button
                   type="button"
@@ -82,11 +83,11 @@ export default function TrailsideLandingPage() {
                   <span className="text-xl leading-none">☰</span>
                 </button>
 
-                <a href="#top" className="block">
+                <a href="#top" className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 block">
                   <img
                     src="/logo.png"
                     alt="Trailside Trim & Carpentry logo"
-                    className="relative h-[88px] w-auto object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.22)]"
+                    className="h-[90px] w-auto object-contain drop-shadow-[0_8px_16px_rgba(0,0,0,0.28)]"
                   />
                 </a>
               </div>
@@ -169,16 +170,16 @@ export default function TrailsideLandingPage() {
                 Professional cabinets, baseboards, doors, and finish trim serving
                 San Tan Valley and the East Valley.
               </p>
-              <div className="mt-8 flex flex-wrap gap-4">
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                 <a
                   href="#request-quote"
-                  className="rounded-md bg-brand-600 px-6 py-3 font-semibold text-white shadow-md transition hover:bg-brand-700"
+                  className="rounded-md bg-brand-600 px-6 py-3 text-center font-semibold text-white shadow-md transition hover:bg-brand-700"
                 >
                   Request a Quote
                 </a>
                 <a
                   href="tel:4802553655"
-                  className="rounded-md border border-white/60 px-6 py-3 font-medium text-white transition hover:bg-white hover:text-gray-900"
+                  className="hidden rounded-md border border-white/60 px-6 py-3 text-center font-medium text-white transition hover:bg-white hover:text-gray-900 sm:block"
                 >
                   Call Now
                 </a>
@@ -190,46 +191,60 @@ export default function TrailsideLandingPage() {
       </section>
 
       {/* TRUST BAR */}
-      <section className="border-b border-zinc-200 bg-white py-5">
+      <section className="border-b border-zinc-200 bg-white py-4">
         <div className="mx-auto max-w-5xl px-6">
-          <div className="grid grid-cols-2 gap-4 md:grid-cols-4">
+          {/* Mobile: 2x2 compact grid, short labels that never wrap */}
+          <div className="grid grid-cols-2 gap-x-3 gap-y-3 md:hidden">
             {[
               {
-                icon: (
-                  <svg className="h-5 w-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                ),
                 label: "Licensed & Insured",
+                path: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
               },
               {
-                icon: (
-                  <svg className="h-5 w-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                  </svg>
-                ),
-                label: "5-Star Rated on Google",
+                label: "5-Star on Google",
+                path: "M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z",
               },
               {
-                icon: (
-                  <svg className="h-5 w-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                  </svg>
-                ),
                 label: "East Valley Local",
+                path: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z",
               },
               {
-                icon: (
-                  <svg className="h-5 w-5 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                  </svg>
-                ),
                 label: "Free Estimates",
+                path: "M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z",
+              },
+            ].map((item) => (
+              <div key={item.label} className="flex items-center gap-2">
+                <svg className="h-4 w-4 flex-shrink-0 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d={item.path} />
+                </svg>
+                <span className="text-xs font-medium leading-tight text-zinc-700">{item.label}</span>
+              </div>
+            ))}
+          </div>
+          {/* Desktop: single row of 4 with full labels */}
+          <div className="hidden md:grid md:grid-cols-4 md:gap-4">
+            {[
+              {
+                label: "Licensed & Insured",
+                path: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
+              },
+              {
+                label: "5-Star Rated on Google",
+                path: "M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z",
+              },
+              {
+                label: "East Valley Local",
+                path: "M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0zM15 11a3 3 0 11-6 0 3 3 0 016 0z",
+              },
+              {
+                label: "Free Estimates",
+                path: "M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z",
               },
             ].map((item) => (
               <div key={item.label} className="flex items-center gap-3">
-                <div className="flex-shrink-0">{item.icon}</div>
+                <svg className="h-5 w-5 flex-shrink-0 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d={item.path} />
+                </svg>
                 <span className="text-sm font-medium text-zinc-700">{item.label}</span>
               </div>
             ))}
