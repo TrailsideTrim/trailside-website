@@ -43,28 +43,57 @@ export default function DoneRightGuarantee() {
     <div className="bg-white text-zinc-900 font-sans">
 
       {/* MINIMAL HEADER */}
-      <header className="border-b border-zinc-200 bg-[#FAF9F7]">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-3">
-          <a href="/" className="block">
-            <img
-              src="/logo.png"
-              alt="Trailside Trim & Carpentry logo"
-              className="h-12 w-auto object-contain md:h-14"
-            />
-          </a>
+      {/* HEADER — 3-column grid centers the logo cleanly */}
+      <header className="relative z-10 border-b border-zinc-200 bg-[#FAF9F7] overflow-visible">
+        <div className="mx-auto grid max-w-6xl grid-cols-3 items-center px-6 h-16 md:h-20">
+
+          {/* Left — back link */}
           <a
-            href="/#request-quote"
-            className="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700"
+            href="/"
+            className="text-sm font-medium text-zinc-500 transition hover:text-zinc-800"
           >
-            Request a Quote
+            ← Back
           </a>
+
+          {/* Center — logo */}
+          <div className="flex justify-center">
+            <a href="/">
+              <img
+                src="/logo.png"
+                alt="Trailside Trim & Carpentry logo"
+                className="h-16 w-auto object-center md:h-20"
+              />
+            </a>
+          </div>
+
+          {/* Right — CTA */}
+          <div className="flex justify-end">
+            <a
+              href="/#request-quote"
+              className="rounded-lg bg-brand-600 px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700"
+            >
+              Request a Quote
+            </a>
+          </div>
+
         </div>
       </header>
 
-      {/* HERO */}
-      <section className="bg-zinc-900 py-20">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <div className="mx-auto mb-5 grid h-12 w-12 place-items-center rounded-full bg-brand-600/15">
+      {/* HERO — photo background with overlay */}
+      <section className="relative overflow-hidden bg-zinc-900 py-40">
+        {/* Background photo */}
+        <img
+          src="/donerighthero.jpeg"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ objectPosition: '60% 130%', objectFit: 'cover', width: '100%', height: '160%' }} />
+        {/* Dark overlay — keeps text crisp while letting the image read through */}
+        <div className="absolute inset-0 bg-zinc-900/85" />
+
+        {/* Content */}
+        <div className="relative z-10 mx-auto max-w-3xl px-6 text-center">
+          <div className="mx-auto mb-5 grid h-12 w-12 place-items-center rounded-full bg-brand-600/20">
             <svg className="h-6 w-6 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
             </svg>
@@ -76,7 +105,7 @@ export default function DoneRightGuarantee() {
             Built on Craftsmanship.
             <br className="hidden sm:block" /> Backed by Accountability.
           </h1>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-zinc-400">
+          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-zinc-300">
             We take pride in finish work that's done properly the first time — and we stand behind it.
             Here's what that means, in plain terms.
           </p>

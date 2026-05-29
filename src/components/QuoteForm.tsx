@@ -13,6 +13,7 @@ const workTypes = [
 export default function QuoteForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [insuranceClaim, setInsuranceClaim] = useState("");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -35,12 +36,15 @@ export default function QuoteForm() {
 
     if (result.success) {
       setSubmitted(true);
+      setInsuranceClaim("");
       e.currentTarget.reset();
     } else {
       console.error("Form submission failed:", result);
       alert("Something went wrong. Please call or text us directly.");
     }
   }
+
+  const showClaimFollowUp = insuranceClaim === "Yes" || insuranceClaim === "Maybe";
 
   return (
     <section id="request-quote" className="scroll-mt-28 bg-[#f3f3f1]">
@@ -75,9 +79,10 @@ export default function QuoteForm() {
           ) : (
             <form onSubmit={handleSubmit} className="grid gap-5">
 
-              {/* Autoresponder — sends confirmation email to the submitter (requires Web3Forms Pro) */}
+              {/* Autoresponder */}
               <input type="hidden" name="autorespond" value="true" />
 
+              {/* Contact info */}
               <div className="grid gap-4 md:grid-cols-2">
                 <input
                   name="name"
@@ -85,7 +90,6 @@ export default function QuoteForm() {
                   placeholder="Name"
                   className="rounded-lg border border-zinc-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition"
                 />
-
                 <input
                   name="phone"
                   required
@@ -93,14 +97,12 @@ export default function QuoteForm() {
                   placeholder="Phone"
                   className="rounded-lg border border-zinc-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition"
                 />
-
                 <input
                   name="email"
                   type="email"
                   placeholder="Email (recommended)"
                   className="rounded-lg border border-zinc-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition"
                 />
-
                 <input
                   name="cityZip"
                   required
@@ -109,6 +111,28 @@ export default function QuoteForm() {
                 />
               </div>
 
+              {/* Preferred contact method */}
+              <div className="rounded-lg border border-zinc-200 p-4 bg-zinc-50/50">
+                <p className="mb-3 text-sm font-medium">
+                  Preferred contact method
+                </p>
+                <div className="flex gap-6 text-sm">
+                  <label className="flex items-center gap-2">
+                    <input type="radio" name="preferredContact" value="Call" required />
+                    Call
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input type="radio" name="preferredContact" value="Text" />
+                    Text
+                  </label>
+                  <label className="flex items-center gap-2">
+                    <input type="radio" name="preferredContact" value="Email" />
+                    Email
+                  </label>
+                </div>
+              </div>
+
+              {/* Work type */}
               <select
                 name="workType"
                 required
@@ -125,6 +149,7 @@ export default function QuoteForm() {
                 ))}
               </select>
 
+              {/* Description */}
               <textarea
                 name="description"
                 required
@@ -133,24 +158,75 @@ export default function QuoteForm() {
                 className="rounded-lg border border-zinc-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition"
               />
 
-              <div className="rounded-lg border border-zinc-200 p-4 bg-zinc-50/50">
+              {/* Insurance claim */}
+              <div className="rounded-lg border border-zinc-200 bg-zinc-50/50 p-4">
                 <p className="mb-3 text-sm font-medium">
-                  Is this an insurance claim?
+                  Is this related to an insurance claim?
                 </p>
-
-                <div className="flex gap-6 text-sm">
-                  <label className="flex items-center gap-2">
-                    <input type="radio" name="insuranceClaim" value="Yes" required />
-                    Yes
-                  </label>
-
-                  <label className="flex items-center gap-2">
-                    <input type="radio" name="insuranceClaim" value="No" required />
-                    No
-                  </label>
+                <div className="flex flex-wrap gap-6 text-sm">
+                  {["Yes", "Maybe / Not Sure", "No"].map((option) => (
+                    <label key={option} className="flex items-center gap-2">
+                      <input
+                        type="radio"
+                        name="insuranceClaim"
+                        value={option === "Maybe / Not Sure" ? "Maybe" : option}
+                        required
+                        onChange={(e) => setInsuranceClaim(e.target.value)}
+                      />
+                      {option}
+                    </label>
+                  ))}
                 </div>
+
+                {/* Conditional follow-up questions */}
+                {showClaimFollowUp && (
+                  <div className="mt-5 grid gap-4 border-t border-zinc-200 pt-5">
+
+                    {/* Prior work */}
+                    <div>
+                      <p className="mb-3 text-sm font-medium text-zinc-700">
+                        Has any work been started or performed on this claim?
+                      </p>
+                      <div className="flex flex-wrap gap-6 text-sm">
+                        {["Yes", "No", "Not Sure"].map((option) => (
+                          <label key={option} className="flex items-center gap-2">
+                            <input
+                              type="radio"
+                              name="priorWork"
+                              value={option}
+                              required={showClaimFollowUp}
+                            />
+                            {option}
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Adjuster visit */}
+                    <div>
+                      <p className="mb-3 text-sm font-medium text-zinc-700">
+                        Has an insurance adjuster already visited the property?
+                      </p>
+                      <div className="flex flex-wrap gap-6 text-sm">
+                        {["Yes", "No", "Not Sure"].map((option) => (
+                          <label key={option} className="flex items-center gap-2">
+                            <input
+                              type="radio"
+                              name="adjusterVisit"
+                              value={option}
+                              required={showClaimFollowUp}
+                            />
+                            {option}
+                          </label>
+                        ))}
+                      </div>
+                    </div>
+
+                  </div>
+                )}
               </div>
 
+              {/* Project photos */}
               <div className="rounded-lg border border-zinc-200 bg-zinc-50/50 p-4 text-sm text-zinc-700">
                 <p className="font-medium text-zinc-900">Project photos</p>
                 <p className="mt-1 text-xs text-zinc-500">
