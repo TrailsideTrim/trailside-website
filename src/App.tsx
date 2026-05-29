@@ -422,18 +422,11 @@ export default function TrailsideLandingPage() {
           <div className="flex flex-col items-center gap-10 md:flex-row md:items-start md:gap-16">
             {/* Photo placeholder — replace with <img> when ready */}
             <div className="flex-shrink-0">
-              <div className="flex h-56 w-56 flex-col items-center justify-center rounded-2xl border-2 border-dashed border-zinc-300 bg-zinc-50 text-zinc-400">
-                <svg className="mb-2 h-10 w-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span className="text-xs font-medium">Your photo here</span>
-              </div>
-              {/* When ready, replace the div above with:
               <img
-                src="/jake.jpg"
+                src="/aboutjakepic.jpg"
                 alt="Jake King — Owner, Trailside Trim & Carpentry"
-                className="h-56 w-56 rounded-2xl object-cover object-top shadow-sm"
-              /> */}
+                className="mx-auto h-80 w-64 rounded-2xl object-cover object-[center_25%] shadow-md md:h-96 md:w-72"
+              />
             </div>
             <div className="text-center md:text-left">
               <p className="text-sm font-semibold uppercase tracking-wide text-brand-600">About</p>
