@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import QuoteForm from "./components/QuoteForm";
 
 const testimonials = [
@@ -40,6 +40,91 @@ function StarRating() {
           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
         </svg>
       ))}
+    </div>
+  );
+}
+
+function BeforeAfterSlider() {
+  const [pos, setPos] = useState(50);
+  const [dragging, setDragging] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const updateFromX = (clientX: number) => {
+    const el = containerRef.current;
+    if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const pct = ((clientX - rect.left) / rect.width) * 100;
+    setPos(Math.max(0, Math.min(100, pct)));
+  };
+
+  const handleDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    setDragging(true);
+    e.currentTarget.setPointerCapture(e.pointerId);
+    updateFromX(e.clientX);
+  };
+  const handleMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (dragging) updateFromX(e.clientX);
+  };
+  const handleUp = () => setDragging(false);
+  const handleKey = (e: React.KeyboardEvent) => {
+    if (e.key === "ArrowLeft") setPos((p) => Math.max(0, p - 4));
+    if (e.key === "ArrowRight") setPos((p) => Math.min(100, p + 4));
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      onPointerDown={handleDown}
+      onPointerMove={handleMove}
+      onPointerUp={handleUp}
+      className="relative mx-auto aspect-[4/5] w-full max-w-md cursor-ew-resize select-none overflow-hidden rounded-2xl shadow-sm"
+    >
+      {/* AFTER (base layer) */}
+      <img
+        src="/kitchen-after.jpg"
+        alt="Kitchen after the remodel — white shaker cabinets and new flooring"
+        draggable={false}
+        className="absolute inset-0 h-full w-full object-cover"
+      />
+      {/* BEFORE (revealed from the left, clipped on the right) */}
+      <img
+        src="/kitchen-before.jpg"
+        alt="Kitchen before the remodel — original cabinets and torn-out subfloor"
+        draggable={false}
+        className="absolute inset-0 h-full w-full object-cover"
+        style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
+      />
+
+      {/* Labels */}
+      <span className="pointer-events-none absolute left-3 top-3 rounded-md bg-zinc-900/85 px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-white">
+        Before
+      </span>
+      <span className="pointer-events-none absolute right-3 top-3 rounded-md bg-brand-600/90 px-2.5 py-1 text-xs font-bold uppercase tracking-wide text-white">
+        After
+      </span>
+
+      {/* Divider line */}
+      <div
+        className="pointer-events-none absolute inset-y-0 z-10 w-0.5 -translate-x-1/2 bg-white/90"
+        style={{ left: `${pos}%` }}
+      />
+
+      {/* Drag handle */}
+      <button
+        type="button"
+        role="slider"
+        aria-label="Drag to compare before and after"
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={Math.round(pos)}
+        onKeyDown={handleKey}
+        className="absolute top-1/2 z-20 grid h-10 w-10 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-zinc-200 bg-white text-zinc-700 shadow-md focus:outline-none focus:ring-2 focus:ring-brand-600/50"
+        style={{ left: `${pos}%` }}
+      >
+        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7l-5 5 5 5M16 7l5 5-5 5" />
+        </svg>
+      </button>
     </div>
   );
 }
@@ -340,30 +425,49 @@ export default function TrailsideLandingPage() {
         <div className="mx-auto max-w-5xl px-6">
           <div className="text-center">
             <h2 className="text-3xl font-bold sm:text-4xl">Gallery of Our Work</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-gray-600">
+            <p className="mx-auto mt-3 max-w-2xl underline text-gray-600">
               A look at the clean, detailed finish work we bring to every project.
             </p>
           </div>
-          <div className="mt-14 grid gap-5 md:grid-cols-[1.35fr_0.95fr]">
+
+          {/* Featured interactive before/after */}
+          <div className="mt-8">
+            <p className="mb-3 text-center text-xl font-semibold uppercase tracking-wide text-brand-600">
+              Recent Project
+            </p>
+            <p className="mb-2 text-center text-sm font-semibold tracking-wide text-gray-500">
+              Full Kitchen Remodel
+            </p>
+            <BeforeAfterSlider />
+            <p className="mt-2 text-center text-sm text-gray-500">
+              Drag the slider to reveal the transformation.
+            </p>
+            <p className="mt-6 text-center text-lg font-semibold uppercase tracking-normal text-brand-600">
+              From torn-out subfloor to finished space.
+            </p>
+          </div>
+
+          {/* Detail shots */}
+          <div className="mt-4 grid gap-5 md:grid-cols-[1.35fr_0.95fr]">
             <div className="overflow-hidden rounded-2xl shadow-sm">
               <img
-                src="/gallery1.jpeg"
-                alt="Bathroom vanity and finish carpentry"
+                src="/kitchen-sink.jpg"
+                alt="Finished kitchen — sink, quartz counters, and coffee bar"
                 className="h-[420px] w-full object-cover transition duration-300 hover:scale-[1.02] md:h-[520px]"
               />
             </div>
             <div className="flex flex-col gap-5">
               <div className="overflow-hidden rounded-2xl shadow-sm">
                 <img
-                  src="/gallery2.jpeg"
-                  alt="Custom panel trim detail"
+                  src="/kitchen-range.jpg"
+                  alt="Finished kitchen — range wall with white shaker cabinets"
                   className="h-[200px] w-full rounded-xl object-cover shadow-sm transition duration-300 hover:scale-[1.02] md:h-[250px]"
                 />
               </div>
               <div className="overflow-hidden rounded-2xl shadow-sm">
                 <img
-                  src="/gallery3.jpeg"
-                  alt="Baseboard detail and finish trim"
+                  src="/kitchen-galley.jpg"
+                  alt="Finished kitchen — full galley view with new flooring"
                   className="h-[200px] w-full rounded-xl object-cover shadow-sm transition duration-300 hover:scale-[1.02] md:h-[250px]"
                 />
               </div>
@@ -420,12 +524,11 @@ export default function TrailsideLandingPage() {
       <section id="about" className="bg-white py-20">
         <div className="mx-auto max-w-5xl px-6">
           <div className="flex flex-col items-center gap-10 md:flex-row md:items-start md:gap-16">
-            {/* Photo placeholder — replace with <img> when ready */}
             <div className="flex-shrink-0">
               <img
                 src="/aboutjakepic.jpg"
                 alt="Jake King — Owner, Trailside Trim & Carpentry"
-                className="mx-auto h-80 w-64 rounded-2xl object-cover object-[center_25%] shadow-md md:h-96 md:w-72"
+                className="mx-auto h-[360px] w-72 rounded-2xl object-cover object-[center_18%] shadow-md ring-1 ring-zinc-200 md:h-[420px] md:w-80"
               />
             </div>
             <div className="text-center md:text-left">
