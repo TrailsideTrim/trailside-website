@@ -150,14 +150,15 @@ export default function TrailsideLandingPage() {
 
       {/* HEADER WRAPPER */}
       <div className="relative z-50">
-        {/* Dark strip — mobile gets enough height for logo badge spill */}
+        {/* Dark strip */}
         <div className="h-8 bg-zinc-900 md:h-10" />
 
         {/* NAVBAR */}
         <header className="border-b border-zinc-300/80 bg-[#FAF9F7] shadow-[0_2px_8px_rgba(0,0,0,0.08)]">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="relative min-h-[52px] md:min-h-[68px] overflow-visible">
-              {/* Mobile layout — logo centered on navbar midpoint, spills into dark strip above and hero below */}
+
+              {/* Mobile layout */}
               <div className="relative flex min-h-[52px] items-center justify-center md:hidden">
                 <button
                   type="button"
@@ -177,17 +178,27 @@ export default function TrailsideLandingPage() {
                 </a>
               </div>
 
-              {/* Desktop layout — sets the row height, nav links centered vertically */}
+              {/* Desktop layout — left nav */}
               <div className="hidden min-h-[68px] items-center justify-between md:flex">
                 <nav className="flex items-center gap-7 text-[15px] font-medium tracking-[0.01em] text-zinc-600 lg:gap-8">
                   <a href="#top" className="transition hover:text-zinc-900">Home</a>
                   <a href="#services" className="transition hover:text-zinc-900">Services</a>
                   <a href="#gallery" className="transition hover:text-zinc-900">Gallery</a>
+                  {/* Done Right Guarantee — shield icon makes it visually distinct */}
+                  <a
+                    href="/done-right-guarantee"
+                    className="flex items-center gap-1.5 text-brand-600 transition hover:text-brand-700"
+                  >
+                    <svg className="h-4 w-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                    Done Right Guarantee
+                  </a>
                 </nav>
                 <div className="md:w-[230px] lg:w-[260px]" />
               </div>
 
-              {/* Center floating logo — centered on navbar, oversized to spill above and below */}
+              {/* Center floating logo */}
               <a
                 href="#top"
                 className="absolute left-1/2 top-1/2 z-20 hidden -translate-x-1/2 -translate-y-1/2 md:block"
@@ -199,7 +210,7 @@ export default function TrailsideLandingPage() {
                 />
               </a>
 
-              {/* Right nav + CTA - desktop only */}
+              {/* Right nav + CTA — desktop only */}
               <div className="absolute inset-y-0 right-0 hidden items-center justify-end gap-5 md:flex lg:gap-6">
                 <nav className="flex items-center gap-7 text-[15px] font-medium tracking-[0.01em] text-zinc-600 lg:gap-8">
                   <a href="#about" className="transition hover:text-zinc-900">About</a>
@@ -212,6 +223,7 @@ export default function TrailsideLandingPage() {
                   (480) 255-3655
                 </a>
               </div>
+
             </div>
           </div>
         </header>
@@ -225,10 +237,22 @@ export default function TrailsideLandingPage() {
               <a onClick={() => setMobileMenuOpen(false)} href="#gallery" className="rounded-md px-3 py-2 hover:bg-zinc-100">Gallery</a>
               <a onClick={() => setMobileMenuOpen(false)} href="#about" className="rounded-md px-3 py-2 hover:bg-zinc-100">About</a>
               <a onClick={() => setMobileMenuOpen(false)} href="#request-quote" className="rounded-md px-3 py-2 hover:bg-zinc-100">Request a Quote</a>
+              {/* Done Right Guarantee — brand-tinted row so it stands out as a trust feature */}
+              <a
+                onClick={() => setMobileMenuOpen(false)}
+                href="/done-right-guarantee"
+                className="flex items-center gap-2.5 rounded-md border border-brand-600/20 bg-brand-600/5 px-3 py-2.5 text-brand-600 hover:bg-brand-600/10"
+              >
+                <svg className="h-4 w-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                </svg>
+                Done Right Guarantee
+              </a>
             </nav>
           </div>
         )}
       </div>
+
 
       {/* HERO */}
       <section className="relative overflow-hidden bg-[#f3f3f1]">
@@ -422,18 +446,18 @@ export default function TrailsideLandingPage() {
 
       {/* GALLERY */}
       <section id="gallery" className="bg-white py-16">
-        <div className="mx-auto max-w-5xl px-6">
+        <div className="mx-auto max-w-5xl px-10">
           <div className="text-center">
             <h2 className="text-3xl font-bold sm:text-4xl">Gallery of Our Work</h2>
-            <p className="mx-auto mt-3 max-w-2xl underline text-gray-600">
+            <p className="mx-auto mt-3 max-w-2xl text-gray-600">
               A look at the clean, detailed finish work we bring to every project.
             </p>
           </div>
 
           {/* Featured interactive before/after */}
-          <div className="mt-8">
-            <p className="mb-3 text-center text-xl font-semibold uppercase tracking-wide text-brand-600">
-              Recent Project
+          <div className="mt-12">
+            <p className="mb-4 text-center text-2xl font-semibold uppercase -tracking-tight text-brand-600">
+              -- Recent Project --
             </p>
             <p className="mb-2 text-center text-sm font-semibold tracking-wide text-gray-500">
               Full Kitchen Remodel
@@ -563,11 +587,37 @@ export default function TrailsideLandingPage() {
         </div>
       </section>
 
+      {/* GUARANTEE TEASER */}
+      <section className="bg-[#f3f3f1] py-6">
+        <div className="mx-auto max-w-4xl px-10">
+          <div className="flex flex-col items-center gap-5 rounded-2xl border border-zinc-200 bg-white p-8 text-center shadow-sm md:flex-row md:gap-7 md:text-left">
+            <div className="grid h-14 w-14 flex-shrink-0 place-items-center rounded-full bg-brand-600/10">
+              <svg className="h-7 w-7 text-brand-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.8} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+            </div>
+            <div className="flex-1">
+              <p className="text-sm font-semibold uppercase tracking-wide text-brand-600">The Done Right Guarantee</p>
+              <h2 className="mt-1 text-xl font-bold sm:text-2xl">We stand behind our workmanship.</h2>
+              <p className="mt-2 text-sm leading-relaxed text-zinc-600">
+                If something within our workmanship wasn't done properly, we'll make reasonable efforts to make it right.
+              </p>
+            </div>
+            <a
+              href="/done-right-guarantee"
+              className="rounded-lg bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-brand-700 whitespace-nowrap"
+            >
+              Read our guarantee
+            </a>
+          </div>
+        </div>
+      </section >
+
       {/* QUOTE FORM */}
-      <QuoteForm />
+      < QuoteForm />
 
       {/* AREAS SERVED */}
-      <section id="areas-served" className="border-t border-zinc-200 bg-white py-14">
+      < section id="areas-served" className="border-t border-zinc-200 bg-white py-14" >
         <div className="mx-auto max-w-5xl px-6">
           <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
             <div>
@@ -598,10 +648,10 @@ export default function TrailsideLandingPage() {
             — we're happy to discuss.
           </p>
         </div>
-      </section>
+      </section >
 
       {/* FOOTER */}
-      <footer className="border-t bg-zinc-50 py-10 pb-24 text-center text-sm text-zinc-500 md:pb-10">
+      < footer className="border-t bg-zinc-50 py-10 pb-24 text-center text-sm text-zinc-500 md:pb-10" >
         <div>
           San Tan Valley, AZ |{" "}
           <a href="tel:4802553655" className="hover:text-zinc-800">(480) 255-3655</a>{" "}
@@ -616,8 +666,11 @@ export default function TrailsideLandingPage() {
           <a href="#request-quote" className="font-semibold text-brand-600 hover:underline">
             Request a Quote
           </a>
+          <a href="/done-right-guarantee" className="ml-4 font-semibold text-brand-600 hover:underline">
+            Done Right Guarantee
+          </a>
         </div>
-      </footer>
-    </div>
+      </footer >
+    </div >
   );
 }

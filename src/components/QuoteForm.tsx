@@ -44,7 +44,7 @@ export default function QuoteForm() {
 
   return (
     <section id="request-quote" className="scroll-mt-28 bg-[#f3f3f1]">
-      <div className="mx-auto max-w-4xl px-4 py-16">
+      <div className="mx-auto max-w-4xl px-4 py-10">
         <div className="rounded-2xl bg-white p-6 md:p-8 border border-zinc-200/70">
           <div className="mb-8">
             <p className="text-sm font-semibold uppercase tracking-wide text-brand-600">
