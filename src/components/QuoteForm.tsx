@@ -84,6 +84,20 @@ export default function QuoteForm() {
               {/* Autoresponder */}
               <input type="hidden" name="autorespond" value="true" />
 
+              {/* Customer type */}
+              <select
+                name="customerType"
+                required
+                className="rounded-lg border border-zinc-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition"
+                defaultValue=""
+              >
+                <option value="" disabled>I am a...</option>
+                <option value="Homeowner">Homeowner</option>
+                <option value="Builder">Builder</option>
+                <option value="General Contractor">General Contractor</option>
+                <option value="Other">Other</option>
+              </select>
+
               {/* Contact info */}
               <div className="grid gap-4 md:grid-cols-2">
                 <input
@@ -133,20 +147,6 @@ export default function QuoteForm() {
                   </label>
                 </div>
               </div>
-
-              {/* Customer type */}
-              <select
-                name="customerType"
-                required
-                className="rounded-lg border border-zinc-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition"
-                defaultValue=""
-              >
-                <option value="" disabled>I am a...</option>
-                <option value="Homeowner">Homeowner</option>
-                <option value="Builder">Builder</option>
-                <option value="General Contractor">General Contractor</option>
-                <option value="Other">Other</option>
-              </select>
 
               {/* Work type */}
               <select
