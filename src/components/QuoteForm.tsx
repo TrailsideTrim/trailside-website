@@ -14,6 +14,7 @@ export default function QuoteForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [insuranceClaim, setInsuranceClaim] = useState("");
+  const [heardAbout, setHeardAbout] = useState("");
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -37,6 +38,7 @@ export default function QuoteForm() {
     if (result.success) {
       setSubmitted(true);
       setInsuranceClaim("");
+      setHeardAbout("");
       e.currentTarget.reset();
     } else {
       console.error("Form submission failed:", result);
@@ -172,6 +174,36 @@ export default function QuoteForm() {
                 className="rounded-lg border border-zinc-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition"
               />
 
+              {/* How did you hear about us */}
+              <div>
+                <select
+                  name="heardAbout"
+                  required
+                  className="w-full rounded-lg border border-zinc-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition"
+                  defaultValue=""
+                  onChange={(e) => setHeardAbout(e.target.value)}
+                >
+                  <option value="" disabled>How did you hear about us?</option>
+                  <option value="Google Search">Google Search</option>
+                  <option value="Google Maps">Google Maps</option>
+                  <option value="Word of Mouth / Referral">Word of Mouth / Referral</option>
+                  <option value="Nextdoor">Nextdoor</option>
+                  <option value="Facebook">Facebook</option>
+                  <option value="Instagram">Instagram</option>
+                  <option value="Yelp">Yelp</option>
+                  <option value="Other">Other</option>
+                </select>
+
+                {heardAbout === "Other" && (
+                  <input
+                    name="heardAboutOther"
+                    required
+                    placeholder="Please tell us how you found us..."
+                    className="mt-2 w-full rounded-lg border border-zinc-300 px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-600/30 focus:border-brand-600 transition"
+                  />
+                )}
+              </div>
+
               {/* Insurance claim */}
               <div className="rounded-lg border border-zinc-200 bg-zinc-50/50 p-4">
                 <p className="mb-3 text-sm font-medium">
@@ -192,11 +224,9 @@ export default function QuoteForm() {
                   ))}
                 </div>
 
-                {/* Conditional follow-up questions */}
                 {showClaimFollowUp && (
                   <div className="mt-5 grid gap-4 border-t border-zinc-200 pt-5">
 
-                    {/* Prior work */}
                     <div>
                       <p className="mb-3 text-sm font-medium text-zinc-700">
                         Has any work been started or performed on this claim?
@@ -216,7 +246,6 @@ export default function QuoteForm() {
                       </div>
                     </div>
 
-                    {/* Adjuster visit */}
                     <div>
                       <p className="mb-3 text-sm font-medium text-zinc-700">
                         Has an insurance adjuster already visited the property?
@@ -242,7 +271,7 @@ export default function QuoteForm() {
 
               {/* Project photos */}
               <div className="rounded-lg border border-zinc-200 bg-zinc-50/50 p-4 text-sm text-zinc-700">
-                <p className="font-medium text-zinc-900">Project photos</p>
+                <p className="font-medium text-zinc-900">Project photos (optional)</p>
                 <p className="mt-1 text-xs text-zinc-500">
                   After submitting, you can email project photos to{" "}
                   <a
